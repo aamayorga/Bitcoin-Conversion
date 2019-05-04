@@ -11,6 +11,8 @@ import UIKit
 class CurrencySelectionViewController: UIViewController {
     
     var enterNameChildViewController: EnterNameViewController!
+    var currencySelectionTableViewController: CurrencySelectionTableViewController!
+    var selectedCurrencySymbol: String!
     
     @IBOutlet weak var enterNameVCLeadingConstraint: NSLayoutConstraint!
     @IBOutlet weak var enterNameVCTrailingConstraint: NSLayoutConstraint!
@@ -18,14 +20,20 @@ class CurrencySelectionViewController: UIViewController {
     
     let defaults = UserDefaults.standard
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "Enter Name Embed Segue" {
+        switch segue.identifier {
+        case "Enter Name Embed Segue":
             enterNameChildViewController = segue.destination as? EnterNameViewController
             enterNameChildViewController.nameEnteredDelegate = self
+        case "Currency Selection Table View Embed Segue":
+            currencySelectionTableViewController = segue.destination as? CurrencySelectionTableViewController
+            currencySelectionTableViewController.currencySelectionDelegate = self
+        case "Currency Selected Show Segue":
+            let conversionViewController = segue.destination as! ConversionResultViewController
+            conversionViewController.convertedCurrency = selectedCurrencySymbol
+            conversionViewController.getConversionPrice(forCurrency: selectedCurrencySymbol)
+        default:
+            return
         }
     }
 }
@@ -37,10 +45,15 @@ extension CurrencySelectionViewController: EnterNameDelegate {
             self.enterNameVCLeadingConstraint.constant += self.view.bounds.width
             self.view.layoutIfNeeded()
         }) { (_) in
-            
             let name = self.defaults.object(forKey: "Name") as! String
-            
             self.helloNameLabel.text = "Hello, \(name)!"
         }
+    }
+}
+
+extension CurrencySelectionViewController: CurrencySelectionDelegate {
+    func didSelectCurrency(currencySymbol: String) {
+        selectedCurrencySymbol = currencySymbol
+        performSegue(withIdentifier: "Currency Selected Show Segue", sender: self)
     }
 }

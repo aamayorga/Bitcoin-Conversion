@@ -19,7 +19,7 @@ class CurrencySelectionTableViewController: UIViewController, UITableViewDelegat
     @IBOutlet weak var currencyTableView: UITableView!
     
     let currencySymbols = ["USD", "MXN", "CAD", "EUR", "JPY"]
-    let currencyNames = ["United States Dollar", "Mexican Peso", "Canadian Dollar", "Euro", "Japanese Yen"]
+    let currencyNames = ["United States Dollar (USD)", "Mexican Peso (MXN)", "Canadian Dollar (CAD)", "Euro (EUR)", "Japanese Yen (JPY)"]
     
     var currencySelectionDelegate: CurrencySelectionDelegate!
     
@@ -42,8 +42,7 @@ class CurrencySelectionTableViewController: UIViewController, UITableViewDelegat
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedCurrency = currencySymbols[indexPath.row]
-        print(selectedCurrency)
-        tableView.deselectRow(at: indexPath, animated: true)
         currencySelectionDelegate.didSelectCurrency(currencySymbol: selectedCurrency)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
