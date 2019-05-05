@@ -14,6 +14,8 @@ class ConversionResultViewController: UIViewController {
     
     var popupErrorViewController: PopupErrorViewController!
     var convertedCurrency: String!
+    var conversionAmount: Double!
+    var displayLink: CADisplayLink?
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
     @IBOutlet weak var conversionAmountLabel: UILabel!
@@ -35,7 +37,9 @@ class ConversionResultViewController: UIViewController {
         BAClient().getPriceConversion(from: "BTC", to: currency, amount: 1.0) { (result) in
             switch result {
             case .success(let priceConversion):
-                print(priceConversion)
+                self.activityIndicator.stopAnimating()
+                self.conversionAmount = priceConversion.price
+                self.animateCountingConversionPrice()
             case .failure(let error):
                 self.showError(errorMessage: error.errorDescription!)
             }
@@ -55,6 +59,7 @@ class ConversionResultViewController: UIViewController {
     }
     
     func showError(errorMessage: String) {
+        activityIndicator.stopAnimating()
         popupErrorViewController.errorLabel.text = errorMessage
         popupErrorViewController.view.isHidden = false
     }
@@ -62,6 +67,42 @@ class ConversionResultViewController: UIViewController {
     func showLoadingIndicator() {
         activityIndicator.startAnimating()
         conversionAmountLabel.text = ""
+    }
+    
+    func animateCountingConversionPrice() {
+        displayLink = CADisplayLink(target: self, selector: #selector(updateLabel))
+        displayLink!.add(to: .main, forMode: .default)
+    }
+    
+    func animateConversionPriceZoom() {
+        UIView.animate(withDuration: 1.0, delay: 0, options: .curveEaseInOut, animations: {
+            self.conversionAmountLabel.textColor = UIColor(red: 33.0/255.0, green: 108.0/255.0, blue: 42.0/255.0, alpha: 1.0)
+            self.conversionAmountLabel.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
+        }) { (_) in
+            UIView.animate(withDuration: 1.0, animations: {
+                self.conversionAmountLabel.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+            }, completion: { (_) in
+                self.conversionAmountLabel.textColor = .white
+            })
+        }
+    }
+    
+    @objc func updateLabel() {
+        let now = Date()
+        let elapsedTime = now.timeIntervalSince(animationStartDate)
+        let animationDuration = 1.5
+        
+        if elapsedTime > animationDuration {
+            conversionAmountLabel.text = "\(conversionAmount!)"
+            displayLink?.invalidate()
+            animateConversionPriceZoom()
+        } else {
+            let percentage = elapsedTime / animationDuration
+            let value = 0.0 + percentage * (conversionAmount - 0.0)
+            let divisor = pow(10.0, Double(2))
+            let amount = (value * divisor).rounded() / divisor
+            conversionAmountLabel.text = "\(amount)"
+        }
     }
 }
 
