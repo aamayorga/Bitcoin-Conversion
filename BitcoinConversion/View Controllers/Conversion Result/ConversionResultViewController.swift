@@ -27,6 +27,7 @@ class ConversionResultViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
+        showLoadingIndicator()
         convertedCurrencyLabel.text = "in \(convertedCurrency ?? "")"
     }
     
@@ -56,6 +57,11 @@ class ConversionResultViewController: UIViewController {
     func showError(errorMessage: String) {
         popupErrorViewController.errorLabel.text = errorMessage
         popupErrorViewController.view.isHidden = false
+    }
+    
+    func showLoadingIndicator() {
+        activityIndicator.startAnimating()
+        conversionAmountLabel.text = ""
     }
 }
 
