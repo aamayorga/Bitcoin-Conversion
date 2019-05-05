@@ -14,46 +14,79 @@ class CurrencySelectionViewController: UIViewController {
     var currencySelectionTableViewController: CurrencySelectionTableViewController!
     var selectedCurrencySymbol: String!
     
+    @IBOutlet weak var visualEffectView: UIVisualEffectView!
+    @IBOutlet weak var enterNameContainerView: UIView!
     @IBOutlet weak var enterNameVCLeadingConstraint: NSLayoutConstraint!
     @IBOutlet weak var enterNameVCTrailingConstraint: NSLayoutConstraint!
+    @IBOutlet weak var enterNameVCCenterYConstraint: NSLayoutConstraint!
     @IBOutlet weak var helloNameLabel: UILabel!
     
     let defaults = UserDefaults.standard
     
+    override func viewDidLoad() {
+        
+        
+        if defaults.bool(forKey: "isNameEntered") {
+            // Remove Enter Name View Controller
+            enterNameChildViewController.willMove(toParent: nil)
+            enterNameChildViewController.view.removeFromSuperview()
+            enterNameChildViewController.removeFromParent()
+            enterNameContainerView.removeFromSuperview()
+            visualEffectView.removeFromSuperview()
+            
+            setupName()
+        }
+    }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
-        case "Enter Name Embed Segue":
+            
+        case SegueConstants.EnterNameEmbedSegue:
             enterNameChildViewController = segue.destination as? EnterNameViewController
             enterNameChildViewController.nameEnteredDelegate = self
-        case "Currency Selection Table View Embed Segue":
+            
+        case SegueConstants.CurrencySelectionTableViewEmbedSegue:
             currencySelectionTableViewController = segue.destination as? CurrencySelectionTableViewController
             currencySelectionTableViewController.currencySelectionDelegate = self
-        case "Currency Selected Show Segue":
+            
+        case SegueConstants.CurrencySelectedShowSegue:
             let conversionViewController = segue.destination as! ConversionResultViewController
             conversionViewController.convertedCurrency = selectedCurrencySymbol
             conversionViewController.getConversionPrice(forCurrency: selectedCurrencySymbol)
+            
         default:
             return
+        }
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        if !defaults.bool(forKey: "isNameEntered") {
+            print("We have a name")
         }
     }
 }
 
 extension CurrencySelectionViewController: EnterNameDelegate {
     func didEnterName(name: String) {
-        UIView.animate(withDuration: 1, delay: 0, options: .curveEaseIn, animations: {
+        defaults.set(true, forKey: "isNameEntered")
+        defaults.set(name, forKey: "Name")
+        
+        setupName()
+        
+        UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseIn, animations: {
             self.enterNameVCTrailingConstraint.constant -= self.view.bounds.width
             self.enterNameVCLeadingConstraint.constant += self.view.bounds.width
+            self.visualEffectView.effect = nil
             self.view.layoutIfNeeded()
-        }) { (_) in
-            let name = self.defaults.object(forKey: "Name") as! String
-            self.helloNameLabel.text = "Hello, \(name)!"
-        }
+        }, completion: { (_) in
+            self.visualEffectView.removeFromSuperview()
+        })
     }
 }
 
 extension CurrencySelectionViewController: CurrencySelectionDelegate {
     func didSelectCurrency(currencySymbol: String) {
         selectedCurrencySymbol = currencySymbol
-        performSegue(withIdentifier: "Currency Selected Show Segue", sender: self)
+        performSegue(withIdentifier: SegueConstants.CurrencySelectedShowSegue, sender: self)
     }
 }
