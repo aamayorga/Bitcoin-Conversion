@@ -25,7 +25,6 @@ class CurrencySelectionViewController: UIViewController {
     
     override func viewDidLoad() {
         
-        
         if defaults.bool(forKey: "isNameEntered") {
             // Remove Enter Name View Controller
             enterNameChildViewController.willMove(toParent: nil)
@@ -59,11 +58,18 @@ class CurrencySelectionViewController: UIViewController {
         }
     }
     
+    func setupName() {
+        let name = self.defaults.object(forKey: "Name") as! String
+        self.helloNameLabel.text = "Hello,\n\(name)!"
+    }
+    
     override func viewDidAppear(_ animated: Bool) {
         if !defaults.bool(forKey: "isNameEntered") {
             print("We have a name")
         }
     }
+    
+    
 }
 
 extension CurrencySelectionViewController: EnterNameDelegate {
