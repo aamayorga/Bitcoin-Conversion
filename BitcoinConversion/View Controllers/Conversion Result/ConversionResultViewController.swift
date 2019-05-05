@@ -22,6 +22,8 @@ class ConversionResultViewController: UIViewController {
     override func viewDidLoad() {
         let conversionResultView = self.view as? ConversionResultView
         conversionResultView?.setupViews()
+        let popErrorView = popupErrorViewController.view as? PopupErrorView
+        popErrorView?.setupViews()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -34,8 +36,32 @@ class ConversionResultViewController: UIViewController {
             case .success(let priceConversion):
                 print(priceConversion)
             case .failure(let error):
-                print(error)
+                self.showError(errorMessage: error.errorDescription!)
             }
         }
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        switch segue.identifier {
+            
+        case SegueConstants.PopupErrorEmbedSegue:
+            popupErrorViewController = segue.destination as? PopupErrorViewController
+            popupErrorViewController.popupErrorDelegate = self
+            
+        default:
+            return
+        }
+    }
+    
+    func showError(errorMessage: String) {
+        popupErrorViewController.errorLabel.text = errorMessage
+        popupErrorViewController.view.isHidden = false
+    }
+}
+
+extension ConversionResultViewController: PopupErrorDelegate {
+    func dismissError() {
+        popupErrorViewController.view.isHidden = true
+        navigationController?.popViewController(animated: true)
     }
 }
