@@ -33,6 +33,11 @@ class CurrencySelectionViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
         
+        let enterNameView = enterNameChildViewController.view as? EnterNameView
+        enterNameView?.setupViews()
+        let currencySelectionView = self.view as? CurrencySelectionView
+        currencySelectionView?.setupViews()
+        
         if defaults.bool(forKey: "isNameEntered") {
             // Remove Enter Name View Controller
             enterNameChildViewController.willMove(toParent: nil)
