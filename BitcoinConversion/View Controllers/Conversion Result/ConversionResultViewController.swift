@@ -18,8 +18,8 @@ class ConversionResultViewController: UIViewController {
     var displayLink: CADisplayLink?
     
     @IBOutlet weak var activityIndicator: UIActivityIndicatorView!
-    @IBOutlet weak var conversionAmountLabel: UILabel!
     @IBOutlet weak var convertedCurrencyLabel: UILabel!
+    @IBOutlet weak var conversionAmountLabel: UILabel!
     
     override func viewDidLoad() {
         // Setup UI
@@ -100,7 +100,7 @@ class ConversionResultViewController: UIViewController {
         
         if elapsedTime > animationDuration {
             // Finished counting. Animate price zoom animation.
-            conversionAmountLabel.text = "\(conversionAmount!)"
+            conversionAmountLabel.text = formatPrice(price: conversionAmount)
             displayLink?.invalidate()
             animateConversionPriceZoom()
         } else {
@@ -108,8 +108,17 @@ class ConversionResultViewController: UIViewController {
             let value = 0.0 + percentage * (conversionAmount - 0.0)
             let divisor = pow(10.0, Double(2))
             let amount = (value * divisor).rounded() / divisor
-            conversionAmountLabel.text = "\(amount)"
+            conversionAmountLabel.text = formatPrice(price: amount)
         }
+    }
+    
+    // Format price to local currency
+    func formatPrice(price: Double) -> String {
+        let currencyFormatter = NumberFormatter()
+        currencyFormatter.numberStyle = .currency
+        currencyFormatter.currencyCode = convertedCurrency
+        currencyFormatter.maximumFractionDigits = 2
+        return currencyFormatter.string(from: NSNumber(value: price))!
     }
 }
 

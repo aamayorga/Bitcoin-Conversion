@@ -44,7 +44,8 @@ class ConversionResultView: UIView {
     func setupConvertedAmountLabel() {
         convertedAmountLabel.textAlignment  = .center
         convertedAmountLabel.textColor      = .white
-        convertedAmountLabel.font           = UIFont.systemFont(ofSize: 48.0, weight: .bold)
+        convertedAmountLabel.font           = UIFont.systemFont(ofSize: 44.0, weight: .bold)
+        convertedAmountLabel.numberOfLines   = 0
     }
     
     func setupCurrencyLabel() {
