@@ -33,26 +33,28 @@ class CurrencySelectionViewController: UIViewController {
         NotificationCenter.default.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
         NotificationCenter.default.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
         
+        // Setup UI
         let enterNameView = enterNameChildViewController.view as? EnterNameView
         enterNameView?.setupViews()
         let currencySelectionView = self.view as? CurrencySelectionView
         currencySelectionView?.setupViews()
         
+        // Check for a name and remove enter name view if there is a name
         if defaults.bool(forKey: "isNameEntered") {
-            // Remove Enter Name View Controller
             enterNameChildViewController.willMove(toParent: nil)
             enterNameChildViewController.view.removeFromSuperview()
             enterNameChildViewController.removeFromParent()
             enterNameContainerView.removeFromSuperview()
             visualEffectView.removeFromSuperview()
             
-            setupName()
+            showName()
         }
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
             
+        // Setup Container View Controllers and Segues
         case SegueConstants.EnterNameEmbedSegue:
             enterNameChildViewController = segue.destination as? EnterNameViewController
             enterNameChildViewController.nameEnteredDelegate = self
@@ -71,7 +73,7 @@ class CurrencySelectionViewController: UIViewController {
         }
     }
     
-    func setupName() {
+    func showName() {
         let name = self.defaults.object(forKey: "Name") as! String
         self.helloNameLabel.text = "Hello,\n\(name)!"
     }
@@ -110,7 +112,7 @@ extension CurrencySelectionViewController: EnterNameDelegate {
         defaults.set(true, forKey: "isNameEntered")
         defaults.set(name, forKey: "Name")
         
-        setupName()
+        showName()
         
         UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseIn, animations: {
             self.enterNameVCTrailingConstraint.constant -= self.view.bounds.width

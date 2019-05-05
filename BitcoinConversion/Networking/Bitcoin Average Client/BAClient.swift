@@ -9,6 +9,7 @@
 import Foundation
 import Alamofire
 
+// Custom MyResult was used due to namespace error with Alamofire
 enum MyResult<T, E: Error> {
     case success(T)
     case failure(E)

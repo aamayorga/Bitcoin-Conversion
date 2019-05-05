@@ -22,6 +22,7 @@ class ConversionResultViewController: UIViewController {
     @IBOutlet weak var convertedCurrencyLabel: UILabel!
     
     override func viewDidLoad() {
+        // Setup UI
         let conversionResultView = self.view as? ConversionResultView
         conversionResultView?.setupViews()
         let popErrorView = popupErrorViewController.view as? PopupErrorView
@@ -49,6 +50,7 @@ class ConversionResultViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         switch segue.identifier {
             
+        // Setup View Controller
         case SegueConstants.PopupErrorEmbedSegue:
             popupErrorViewController = segue.destination as? PopupErrorViewController
             popupErrorViewController.popupErrorDelegate = self
@@ -75,10 +77,13 @@ class ConversionResultViewController: UIViewController {
     }
     
     func animateConversionPriceZoom() {
+        // Make text bigger and green
         UIView.animate(withDuration: 1.0, delay: 0, options: .curveEaseInOut, animations: {
             self.conversionAmountLabel.textColor = UIColor(red: 33.0/255.0, green: 108.0/255.0, blue: 42.0/255.0, alpha: 1.0)
             self.conversionAmountLabel.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
         }) { (_) in
+            
+            // Make text smaller again and white
             UIView.animate(withDuration: 1.0, animations: {
                 self.conversionAmountLabel.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
             }, completion: { (_) in
@@ -87,12 +92,14 @@ class ConversionResultViewController: UIViewController {
         }
     }
     
+    // Animates label to count up very fast until it is at the conversion price
     @objc func updateLabel() {
         let now = Date()
         let elapsedTime = now.timeIntervalSince(animationStartDate)
         let animationDuration = 1.5
         
         if elapsedTime > animationDuration {
+            // Finished counting. Animate price zoom animation.
             conversionAmountLabel.text = "\(conversionAmount!)"
             displayLink?.invalidate()
             animateConversionPriceZoom()

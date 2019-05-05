@@ -211,19 +211,19 @@
 		4B425877227BF080002092F2 /* Networking */ = {
 			isa = PBXGroup;
 			children = (
-				4B425878227BF0BB002092F2 /* Bitcoin Average */,
+				4B425878227BF0BB002092F2 /* Bitcoin Average Client */,
 				4B425880227BFBB5002092F2 /* NetworkError.swift */,
 			);
 			path = Networking;
 			sourceTree = "<group>";
 		};
-		4B425878227BF0BB002092F2 /* Bitcoin Average */ = {
+		4B425878227BF0BB002092F2 /* Bitcoin Average Client */ = {
 			isa = PBXGroup;
 			children = (
 				4B425879227BF1AF002092F2 /* BAConstants.swift */,
 				4B42587B227BFA23002092F2 /* BAClient.swift */,
 			);
-			path = "Bitcoin Average";
+			path = "Bitcoin Average Client";
 			sourceTree = "<group>";
 		};
 		4B42587D227BFA96002092F2 /* Models */ = {
