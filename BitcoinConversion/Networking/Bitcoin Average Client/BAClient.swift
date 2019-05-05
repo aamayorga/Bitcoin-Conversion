@@ -30,7 +30,7 @@ class BAClient {
         Alamofire.request(url).validate().responseJSON { (response) in
             
             guard response.result.isSuccess else {
-                completion(.failure(.invalidResponse))
+                completion(.failure(.invalidRequest))
                 return
             }
             

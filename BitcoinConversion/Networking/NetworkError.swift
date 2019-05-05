@@ -11,7 +11,6 @@ import Foundation
 enum NetworkError: Error, Equatable {
     case failedToDecode
     case invalidRequest
-    case invalidResponse
     case invalidUrl
     case noDataFound
     case invalidData
@@ -31,9 +30,6 @@ extension NetworkError: LocalizedError {
             
         case .invalidRequest:
             return NSLocalizedString("Could not complete request. Check internet connection and try again.", comment: "")
-            
-        case .invalidResponse:
-            return NSLocalizedString("Invalid response, please try again later.", comment: "")
             
         case .invalidData:
             return NSLocalizedString("Malformed data received.", comment: "")
