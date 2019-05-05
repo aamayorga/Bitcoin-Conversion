@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		029B5DE13AF49A7009626D09 /* Pods_BitcoinConversionTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = C54DC9663A44905A5220E8E1 /* Pods_BitcoinConversionTests.framework */; };
+		4B3FE581227D3FE300E3C01C /* CurrencySelectionTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B3FE580227D3FE300E3C01C /* CurrencySelectionTableViewController.swift */; };
 		4B425840227B635D002092F2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B42583F227B635D002092F2 /* AppDelegate.swift */; };
 		4B425845227B635D002092F2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 4B425843227B635D002092F2 /* Main.storyboard */; };
 		4B425847227B635F002092F2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 4B425846227B635F002092F2 /* Assets.xcassets */; };
@@ -15,8 +16,18 @@
 		4B425855227B635F002092F2 /* BitcoinConversionTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B425854227B635F002092F2 /* BitcoinConversionTests.swift */; };
 		4B425860227B635F002092F2 /* BitcoinConversionUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B42585F227B635F002092F2 /* BitcoinConversionUITests.swift */; };
 		4B42586E227B70BE002092F2 /* EnterNameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B42586D227B70BE002092F2 /* EnterNameViewController.swift */; };
-		4B425872227B739A002092F2 /* NameTextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B425871227B739A002092F2 /* NameTextFieldDelegate.swift */; };
 		4B425874227BB681002092F2 /* CurrencySelectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B425873227BB681002092F2 /* CurrencySelectionViewController.swift */; };
+		4B42587A227BF1AF002092F2 /* BAConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B425879227BF1AF002092F2 /* BAConstants.swift */; };
+		4B42587C227BFA23002092F2 /* BAClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B42587B227BFA23002092F2 /* BAClient.swift */; };
+		4B42587F227BFABE002092F2 /* PriceConversion.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B42587E227BFABE002092F2 /* PriceConversion.swift */; };
+		4B425881227BFBB5002092F2 /* NetworkError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B425880227BFBB5002092F2 /* NetworkError.swift */; };
+		4B72D89E227D5A8D0028154C /* ConversionResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B72D89D227D5A8D0028154C /* ConversionResultViewController.swift */; };
+		4B72D8A1227E3F590028154C /* SegueConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B72D8A0227E3F590028154C /* SegueConstants.swift */; };
+		4B72D8A4227E55430028154C /* PopupErrorViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B72D8A3227E55430028154C /* PopupErrorViewController.swift */; };
+		4B72D8A7227E8C1D0028154C /* EnterNameView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B72D8A6227E8C1D0028154C /* EnterNameView.swift */; };
+		4B72D8A9227EBA5D0028154C /* CurrencySelectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B72D8A8227EBA5D0028154C /* CurrencySelectionView.swift */; };
+		4B72D8AB227EC6170028154C /* ConversionResultView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B72D8AA227EC6170028154C /* ConversionResultView.swift */; };
+		4B72D8AD227ECAE20028154C /* PopupErrorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4B72D8AC227ECAE20028154C /* PopupErrorView.swift */; };
 		5FE7A77922EAEAF7A4AB45B7 /* Pods_BitcoinConversion.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D6A1FDE1EE5653B3552017C1 /* Pods_BitcoinConversion.framework */; };
 		70E5E16B4109C55AB6D1B45E /* Pods_BitcoinConversionUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E455C469382D9493B2B72CA6 /* Pods_BitcoinConversionUITests.framework */; };
 /* End PBXBuildFile section */
@@ -39,6 +50,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4B3FE580227D3FE300E3C01C /* CurrencySelectionTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencySelectionTableViewController.swift; sourceTree = "<group>"; };
 		4B42583C227B635D002092F2 /* BitcoinConversion.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = BitcoinConversion.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		4B42583F227B635D002092F2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4B425844227B635D002092F2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -52,8 +64,18 @@
 		4B42585F227B635F002092F2 /* BitcoinConversionUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BitcoinConversionUITests.swift; sourceTree = "<group>"; };
 		4B425861227B635F002092F2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4B42586D227B70BE002092F2 /* EnterNameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterNameViewController.swift; sourceTree = "<group>"; };
-		4B425871227B739A002092F2 /* NameTextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameTextFieldDelegate.swift; sourceTree = "<group>"; };
 		4B425873227BB681002092F2 /* CurrencySelectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencySelectionViewController.swift; sourceTree = "<group>"; };
+		4B425879227BF1AF002092F2 /* BAConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAConstants.swift; sourceTree = "<group>"; };
+		4B42587B227BFA23002092F2 /* BAClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BAClient.swift; sourceTree = "<group>"; };
+		4B42587E227BFABE002092F2 /* PriceConversion.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PriceConversion.swift; sourceTree = "<group>"; };
+		4B425880227BFBB5002092F2 /* NetworkError.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NetworkError.swift; sourceTree = "<group>"; };
+		4B72D89D227D5A8D0028154C /* ConversionResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversionResultViewController.swift; sourceTree = "<group>"; };
+		4B72D8A0227E3F590028154C /* SegueConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SegueConstants.swift; sourceTree = "<group>"; };
+		4B72D8A3227E55430028154C /* PopupErrorViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupErrorViewController.swift; sourceTree = "<group>"; };
+		4B72D8A6227E8C1D0028154C /* EnterNameView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EnterNameView.swift; sourceTree = "<group>"; };
+		4B72D8A8227EBA5D0028154C /* CurrencySelectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CurrencySelectionView.swift; sourceTree = "<group>"; };
+		4B72D8AA227EC6170028154C /* ConversionResultView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConversionResultView.swift; sourceTree = "<group>"; };
+		4B72D8AC227ECAE20028154C /* PopupErrorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopupErrorView.swift; sourceTree = "<group>"; };
 		4CAE95F7844BA3F15542F378 /* Pods-BitcoinConversion.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BitcoinConversion.debug.xcconfig"; path = "Pods/Target Support Files/Pods-BitcoinConversion/Pods-BitcoinConversion.debug.xcconfig"; sourceTree = "<group>"; };
 		67C179BA847CA35B333CEA76 /* Pods-BitcoinConversionUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BitcoinConversionUITests.release.xcconfig"; path = "Pods/Target Support Files/Pods-BitcoinConversionUITests/Pods-BitcoinConversionUITests.release.xcconfig"; sourceTree = "<group>"; };
 		70E81874733A192A7DE8A758 /* Pods-BitcoinConversion.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-BitcoinConversion.release.xcconfig"; path = "Pods/Target Support Files/Pods-BitcoinConversion/Pods-BitcoinConversion.release.xcconfig"; sourceTree = "<group>"; };
@@ -119,6 +141,10 @@
 			isa = PBXGroup;
 			children = (
 				4B42583F227B635D002092F2 /* AppDelegate.swift */,
+				4B72D8A5227E8BE10028154C /* View */,
+				4B72D89F227E3F370028154C /* Helper */,
+				4B42587D227BFA96002092F2 /* Models */,
+				4B425877227BF080002092F2 /* Networking */,
 				4B42586F227B72BD002092F2 /* View Controllers */,
 				4B425843227B635D002092F2 /* Main.storyboard */,
 				4B425846227B635F002092F2 /* Assets.xcassets */,
@@ -149,7 +175,8 @@
 		4B42586F227B72BD002092F2 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				4B425876227BB6B8002092F2 /* Conversion View */,
+				4B72D8A2227E54F50028154C /* Pop-up Error */,
+				4B425876227BB6B8002092F2 /* Conversion Result */,
 				4B425875227BB686002092F2 /* Currency Selection */,
 				4B425870227B72F3002092F2 /* Enter Name */,
 			);
@@ -160,7 +187,6 @@
 			isa = PBXGroup;
 			children = (
 				4B42586D227B70BE002092F2 /* EnterNameViewController.swift */,
-				4B425871227B739A002092F2 /* NameTextFieldDelegate.swift */,
 			);
 			path = "Enter Name";
 			sourceTree = "<group>";
@@ -169,15 +195,70 @@
 			isa = PBXGroup;
 			children = (
 				4B425873227BB681002092F2 /* CurrencySelectionViewController.swift */,
+				4B3FE580227D3FE300E3C01C /* CurrencySelectionTableViewController.swift */,
 			);
 			path = "Currency Selection";
 			sourceTree = "<group>";
 		};
-		4B425876227BB6B8002092F2 /* Conversion View */ = {
+		4B425876227BB6B8002092F2 /* Conversion Result */ = {
 			isa = PBXGroup;
 			children = (
+				4B72D89D227D5A8D0028154C /* ConversionResultViewController.swift */,
 			);
-			path = "Conversion View";
+			path = "Conversion Result";
+			sourceTree = "<group>";
+		};
+		4B425877227BF080002092F2 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				4B425878227BF0BB002092F2 /* Bitcoin Average */,
+				4B425880227BFBB5002092F2 /* NetworkError.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		4B425878227BF0BB002092F2 /* Bitcoin Average */ = {
+			isa = PBXGroup;
+			children = (
+				4B425879227BF1AF002092F2 /* BAConstants.swift */,
+				4B42587B227BFA23002092F2 /* BAClient.swift */,
+			);
+			path = "Bitcoin Average";
+			sourceTree = "<group>";
+		};
+		4B42587D227BFA96002092F2 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				4B42587E227BFABE002092F2 /* PriceConversion.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		4B72D89F227E3F370028154C /* Helper */ = {
+			isa = PBXGroup;
+			children = (
+				4B72D8A0227E3F590028154C /* SegueConstants.swift */,
+			);
+			path = Helper;
+			sourceTree = "<group>";
+		};
+		4B72D8A2227E54F50028154C /* Pop-up Error */ = {
+			isa = PBXGroup;
+			children = (
+				4B72D8A3227E55430028154C /* PopupErrorViewController.swift */,
+			);
+			path = "Pop-up Error";
+			sourceTree = "<group>";
+		};
+		4B72D8A5227E8BE10028154C /* View */ = {
+			isa = PBXGroup;
+			children = (
+				4B72D8A6227E8C1D0028154C /* EnterNameView.swift */,
+				4B72D8AC227ECAE20028154C /* PopupErrorView.swift */,
+				4B72D8A8227EBA5D0028154C /* CurrencySelectionView.swift */,
+				4B72D8AA227EC6170028154C /* ConversionResultView.swift */,
+			);
+			path = View;
 			sourceTree = "<group>";
 		};
 		5A51C29E0251F616FA27699B /* Frameworks */ = {
@@ -414,8 +495,19 @@
 			buildActionMask = 2147483647;
 			files = (
 				4B42586E227B70BE002092F2 /* EnterNameViewController.swift in Sources */,
+				4B72D8A9227EBA5D0028154C /* CurrencySelectionView.swift in Sources */,
+				4B425881227BFBB5002092F2 /* NetworkError.swift in Sources */,
+				4B72D8AD227ECAE20028154C /* PopupErrorView.swift in Sources */,
+				4B72D8A7227E8C1D0028154C /* EnterNameView.swift in Sources */,
+				4B72D8A4227E55430028154C /* PopupErrorViewController.swift in Sources */,
+				4B72D8AB227EC6170028154C /* ConversionResultView.swift in Sources */,
+				4B42587C227BFA23002092F2 /* BAClient.swift in Sources */,
+				4B3FE581227D3FE300E3C01C /* CurrencySelectionTableViewController.swift in Sources */,
+				4B42587A227BF1AF002092F2 /* BAConstants.swift in Sources */,
+				4B72D8A1227E3F590028154C /* SegueConstants.swift in Sources */,
+				4B72D89E227D5A8D0028154C /* ConversionResultViewController.swift in Sources */,
 				4B425874227BB681002092F2 /* CurrencySelectionViewController.swift in Sources */,
-				4B425872227B739A002092F2 /* NameTextFieldDelegate.swift in Sources */,
+				4B42587F227BFABE002092F2 /* PriceConversion.swift in Sources */,
 				4B425840227B635D002092F2 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
