@@ -25,6 +25,9 @@ class CurrencySelectionViewController: UIViewController {
     
     override func viewDidLoad() {
         
+        NotificationCenter.default.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillHideNotification, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(adjustForKeyboard), name: UIResponder.keyboardWillChangeFrameNotification, object: nil)
+        
         if defaults.bool(forKey: "isNameEntered") {
             // Remove Enter Name View Controller
             enterNameChildViewController.willMove(toParent: nil)
@@ -65,11 +68,31 @@ class CurrencySelectionViewController: UIViewController {
     
     override func viewDidAppear(_ animated: Bool) {
         if !defaults.bool(forKey: "isNameEntered") {
-            print("We have a name")
+            animateView()
         }
     }
     
+    func animateView() {
+        self.enterNameVCCenterYConstraint.constant -= view.frame.height
+        self.view.layoutIfNeeded()
+        UIView.animate(withDuration: 1, delay: 1, options: .curveEaseInOut, animations: {
+            self.enterNameVCCenterYConstraint.constant = 0
+            self.view.layoutIfNeeded()
+        }, completion: nil)
+    }
     
+    @objc func adjustForKeyboard(_ notification: Notification) {
+        guard let keyboardValue = notification.userInfo?[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
+        
+        let keyboardScreenEndFrame = keyboardValue.cgRectValue
+        let keyboardViewEndFrame = view.convert(keyboardScreenEndFrame, from: view.window)
+        
+        if notification.name == UIResponder.keyboardWillHideNotification {
+            enterNameVCCenterYConstraint.constant = 0
+        } else {
+            enterNameVCCenterYConstraint.constant = -( (enterNameChildViewController.view.frame.height/2) - (keyboardViewEndFrame.minY - view.center.y) + 16 )
+        }
+    }
 }
 
 extension CurrencySelectionViewController: EnterNameDelegate {
