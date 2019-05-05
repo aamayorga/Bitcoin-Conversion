@@ -15,6 +15,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+        checkForName()
         return true
     }
 
@@ -40,6 +41,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func applicationWillTerminate(_ application: UIApplication) {
         // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
         popConversionViewController()
+    }
+    
+    func checkForName() {
+        let defaults = UserDefaults.standard
+
+        if (defaults.object(forKey: "Name") != nil) {
+            defaults.set(true, forKey: "isNameEntered")
+        } else {
+            defaults.set(false, forKey: "isNameEntered")
+        }
     }
 
     func popConversionViewController() {
