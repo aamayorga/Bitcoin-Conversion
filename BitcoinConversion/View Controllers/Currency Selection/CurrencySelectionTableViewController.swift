@@ -27,6 +27,7 @@ class CurrencySelectionTableViewController: UIViewController, UITableViewDelegat
         super.viewDidLoad()
         currencyTableView.delegate = self
         currencyTableView.dataSource = self
+        currencyTableView.separatorColor = .white
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -36,6 +37,8 @@ class CurrencySelectionTableViewController: UIViewController, UITableViewDelegat
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: CELL_ID, for: indexPath)
         cell.textLabel?.text = "\(currencyNames[indexPath.row])"
+        cell.textLabel?.textColor = .white
+        cell.textLabel?.font = UIFont.systemFont(ofSize: 16.0, weight: .semibold)
         
         return cell
     }
